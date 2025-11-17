@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\UserController;
 
-// Route::group(['middleware' => "auth:sanctum"], function () {
+Route::group(['middleware' => "auth:sanctum"], function () {
 
     Route::get('students/{id}', [StudentController::class, 'getStudentById']);
 
@@ -20,7 +20,7 @@ use App\Http\Controllers\UserController;
     Route::patch('update-student/{id}', [StudentController::class, 'updateStudentInfo']);
 
     Route::post('/student/{id}/upload', [StudentController::class, 'buploadFiles']);
-// });
+});
 
 
 
