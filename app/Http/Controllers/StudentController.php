@@ -33,7 +33,7 @@ class StudentController extends Controller
         try {
             $validated = $req->validate([
                 'name'  => 'required|string|max:255',
-                'email' => 'required|email',
+                'email' => 'required|email|unique:student_mysql.students,email',
                 'phone' => 'required|string|max:20',
             ]);
         } catch (\Illuminate\Validation\ValidationException $e) {
