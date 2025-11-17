@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('student_files', function (Blueprint $table) {
+        Schema::connection('student_mysql')->create('student_files', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('student_id');
             $table->string('file_path');
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('student_files');
+        Schema::connection('student_mysql')->dropIfExists('student_files');
     }
 };

@@ -43,6 +43,22 @@ return [
             'transaction_mode' => 'DEFERRED',
         ],
 
+        'student_mysql' => [
+            'driver' => 'mysql',
+            'host' => env('STUDENT_DB_HOST', '127.0.0.1'),
+            'port' => env('STUDENT_DB_PORT', '3306'),
+            'database' => env('STUDENT_DB_DATABASE', 'student_demo'),
+            'username' => env('STUDENT_DB_USERNAME', 'root'),
+            'password' => env('STUDENT_DB_PASSWORD', ''),
+            'unix_socket' => env('DB_SOCKET', ''),
+            'charset' => env('DB_CHARSET', 'utf8mb4'),
+            'collation' => env('DB_COLLATION', 'utf8mb4_unicode_ci'),
+            'prefix' => '',
+            'prefix_indexes' => true,
+            'strict' => true,
+            'engine' => null,
+        ],
+
         'mysql' => [
             'driver' => 'mysql',
             'url' => env('DB_URL'),
@@ -148,7 +164,7 @@ return [
 
         'options' => [
             'cluster' => env('REDIS_CLUSTER', 'redis'),
-            'prefix' => env('REDIS_PREFIX', Str::slug((string) env('APP_NAME', 'laravel')).'-database-'),
+            'prefix' => env('REDIS_PREFIX', Str::slug((string) env('APP_NAME', 'laravel')) . '-database-'),
             'persistent' => env('REDIS_PERSISTENT', false),
         ],
 

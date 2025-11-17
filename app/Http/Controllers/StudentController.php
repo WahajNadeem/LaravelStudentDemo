@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Services\StudentService;
+use Illuminate\Support\Facades\Cache;
 
 class StudentController extends Controller
 {
@@ -16,21 +17,23 @@ class StudentController extends Controller
 
     function studentList()
     {
+        $students = Cache::remember('students_all', 60 * 60, function () {
+           return $this->studentService->getAllStudents();
+        });
+
         return response()->json([
             'status'  => 'success',
             'message' => 'Students fetched successfully',
-            'data'    => $this->studentService->getAllStudents()
+            'data'    =>  $students
         ], 200);
-
     }
 
     function addStudent(Request $req)
     {
         try {
-
             $validated = $req->validate([
                 'name'  => 'required|string|max:255',
-                'email' => 'required|email|unique:students,email',
+                'email' => 'required|email',
                 'phone' => 'required|string|max:20',
             ]);
         } catch (\Illuminate\Validation\ValidationException $e) {
