@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\UserController;
 
-Route::group(['middleware' => "auth:sanctum"], function () {
+Route::group(['middleware' => "auth:api"], function () {
 
     Route::get('students/{id}', [StudentController::class, 'getStudentById']);
 

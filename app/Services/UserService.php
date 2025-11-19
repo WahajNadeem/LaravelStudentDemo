@@ -19,8 +19,9 @@ class UserService
     {
         $data['password'] = bcrypt($data['password']);
         $user = $this->userRepo->create($data);
-        $apiToken = $user->createToken('MyApp');
-        return $apiToken->plainTextToken;
+        $apiToken = auth()->login($user);
+        // $apiToken = $user->createToken('MyApp');
+        return $apiToken;
     }
 
     public function findByEmail(array $data)
@@ -34,12 +35,13 @@ class UserService
         }
 
 
-        $apiToken = $user->createToken("MyApp");
+        // $apiToken = $user->createToken("MyApp");
+        $apiToken = auth()->login($user);
 
         return response()->json([
             'status' => 'success',
             'data' => $user,
-            'apiToken' => $apiToken->plainTextToken
+            'apiToken' => $apiToken
         ]);
     }
 }
