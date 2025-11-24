@@ -56,4 +56,8 @@ class StudentService
     {
         return $this->studentRepo->uploadFiles($student, $files);
     }
+    public function query()
+    {
+        return $this->studentRepo->query();
+    }
 }

@@ -217,4 +217,8 @@ class StudentController extends Controller
             'message' => 'File upload failed'
         ], 500);
     }
+
+    function query(){
+       return $this->studentService->query();
+    }
 }

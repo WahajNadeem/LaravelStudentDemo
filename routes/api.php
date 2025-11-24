@@ -19,9 +19,11 @@ Route::group(['middleware' => "auth:api"], function () {
 
     Route::patch('update-student/{id}', [StudentController::class, 'updateStudentInfo']);
 
-    Route::post('/student/{id}/upload', [StudentController::class, 'buploadFiles']);
+    Route::post('/student/{id}/upload', [StudentController::class, 'uploadFiles']);
+
 });
 
+Route::get('/student/query', [StudentController::class, 'query']);
 
 
 Route::post('/login', [UserController::class, 'login']);

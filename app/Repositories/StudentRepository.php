@@ -61,7 +61,7 @@ class StudentRepository
         foreach ($files as $file) {
             $filePath = $file->store('students', 'public');
             if ($filePath) {
-               $studentFile = $student->files()->create([
+                $studentFile = $student->files()->create([
                     'file_path' => $filePath,
                     'original_name' => $file->getClientOriginalName(),
                 ]);
@@ -73,5 +73,42 @@ class StudentRepository
         }
 
         return $uploadedFiles;
+    }
+
+    function query()
+    {
+        // return Student::where('age','>','90')
+        // ->get();
+        // return Student::where('score','>','50')
+        // ->Where(function($query){
+        //     $query->orWhere('age','>','90');
+        // })
+        // ->get();
+
+
+        //Scope Function
+        // return Student::male()->get();
+
+
+        //Search Query
+        // $search = "E";
+
+        // return Student::whereAny([
+        //         'name',
+        //         'email',
+        //         'gender',
+        //         'phone'
+        //     ], 'like', "%{$search}%")->get();
+
+        // return Student::when($search, function ($query) use ($search) {
+        //     return $query->whereAny([
+        //         'name',
+        //         'email',
+        //         'gender',
+        //         'phone'
+        //     ], 'like', "%{$search}%");
+        // })->get();
+
+        return Student::paginate(perPage:10, page:4);
     }
 }
